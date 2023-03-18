@@ -1,0 +1,1 @@
+Time complexity for appending a block is O(1) and space complexity is O(n)

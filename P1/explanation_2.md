@@ -1,0 +1,1 @@
+Time complexity is O(n) and space complexity is O(1)

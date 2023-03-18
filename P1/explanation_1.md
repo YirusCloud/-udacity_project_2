@@ -1,0 +1,1 @@
+Time complexity of get() is O(1) and of set() is O(1). Space complexity of the LRU Cache is O(n)
