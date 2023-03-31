@@ -3,22 +3,56 @@
 import datetime
 import hashlib
 
-
 class Block:
 
-    def __init__(self, timestamp, data, previous_hash):
+    def __init__(self, timestamp, data, previous_hash = None):
         self.timestamp = timestamp
         self.data = data
         self.previous_hash = previous_hash
-        self.hash = self.calc_hash()
+        self.previous_block = None
+        self.hash = self._calc_hash()
 
-    def calc_hash(self):
+    def get_hash(self):
+        return self.hash
+
+    def get_data(self):
+        return self.data
+
+    def __str__(self):
+        return 'Timestamp: {} \nData: {} \nHash: {} \nPrevious hash: {}'.format(self.timestamp, self.data, self.hash, self.previous_hash)
+
+    ## private method
+    def _calc_hash(self):
         sha = hashlib.sha256()
-
-        hash_str = "We are going to encode this string of data!".encode('utf-8')
-
+        hash_str = str(self.timestamp).encode('utf-8')
+        hash_str += str(self.data).encode('utf-8')
+        hash_str += str(self.previous_hash).encode('utf-8')
         sha.update(hash_str)
+        return sha.hexdigest()class Block:
 
+    def __init__(self, timestamp, data, previous_hash = None):
+        self.timestamp = timestamp
+        self.data = data
+        self.previous_hash = previous_hash
+        self.previous_block = None
+        self.hash = self._calc_hash()
+
+    def get_hash(self):
+        return self.hash
+
+    def get_data(self):
+        return self.data
+
+    def __str__(self):
+        return 'Timestamp: {} \nData: {} \nHash: {} \nPrevious hash: {}'.format(self.timestamp, self.data, self.hash, self.previous_hash)
+
+    ## private method
+    def _calc_hash(self):
+        sha = hashlib.sha256()
+        hash_str = str(self.timestamp).encode('utf-8')
+        hash_str += str(self.data).encode('utf-8')
+        hash_str += str(self.previous_hash).encode('utf-8')
+        sha.update(hash_str)
         return sha.hexdigest()
 
 
